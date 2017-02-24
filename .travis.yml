@@ -1,0 +1,23 @@
+sudo: false
+language: python
+python:
+  - 2.7
+  - 3.6
+install: pip install tox-travis codecov
+script: tox --travis-after
+after_success: codecov
+branches:
+  only:
+    - master
+    - "/^\\d+(\\.\\d+)*$/"
+matrix:
+  fast_finish: true
+deploy:
+  provider: pypi
+  user: ryanhiebert-auto
+  password:
+    secure: IoTY32Zm0oN8EtqsLlVCygZp304ed8uXowVrfu0MMComKzLCqg7syLaPaxc0YAZR1dww/tjUEpz4jGacvQQ8f2Xh1853gCkd9Ua+kV6cDtRNMoug4V+3klwdY+vX6/4gk3tlbkN6QQ8KnZAbSLTiNNsIRT/Kx+co8SJ/zku0gvoaBvt2uuZ7jsuPWQzB49YLZwgIOPuvCLI7FhwsDRHwazVhvGx6cUWN5Ch8nCLAArNoh6jRkOU8V720ywS51GxFwdSUYuAVVt6zrZGeouqcPhSqVWk0MidFHMbipYCbKtgOjnYG7rHIbxQG6MSEs19ld1KadZmipqf5PiR5NAnQPpjIUebdJiVelAXGKdm2b0ZJQlvDbuVVHHZPc+OFxFlTUYWEKtFzF956zJoNm7mw+4ETAq+JhYFvswo5ZYtHRkyDqXr7nE62lRn9OtF2berJwcopWK6xaM+i8XNAlpyQR27bkwzln59lbf1jM1zHRRKBJ4JDkH6AFfNEneR17t8ovVh/HMcYH3oRDF3PUI4lQ0bBt1+Qykrq0T1LWonhaWRKKucXnHTo2iEd8FH/vM7hoanhSnMbvJfZzdk4qrR+Toc9dReJ/QvIzGOxQWJnC1kSxnz79SMQ8sY3EGOl10fjneQf53niwFHkiau9XmtX0FLHUUJFv+ee7VUH1A1x+aU=
+  on:
+    tags: true
+    python: 3.6
+  distributions: sdist bdist_wheel

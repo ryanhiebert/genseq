@@ -1,0 +1,2 @@
+include *.rst
+global-exclude __pycache__ *.py[co]
